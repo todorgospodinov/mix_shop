@@ -2,27 +2,23 @@ package softuni.mix_shop.model.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 @Entity
 @Table(name="users")
-public class UserEntity extends BaseEntity{
+public class UserEntity extends BaseEntity  {
 
     private String username;
     private String fullName;
     private String password;
+    private String confirmPassword;
     private String email;
-    private boolean enabled;
-    private List<AuthorityEntity> authorities = new ArrayList<>();
+    private List<RoleEntity> roles = new ArrayList<>();
 
     public UserEntity() {
     }
-
+@Column(nullable = false)
     public String getUsername() {
         return username;
     }
@@ -40,7 +36,7 @@ public class UserEntity extends BaseEntity{
         this.fullName = fullName;
         return this;
     }
-
+    @Column(nullable = false)
     public String getPassword() {
         return password;
     }
@@ -49,7 +45,17 @@ public class UserEntity extends BaseEntity{
         this.password = password;
         return this;
     }
+    @Column(nullable = false)
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
 
+    public UserEntity setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+        return this;
+    }
+
+    @Email
     public String getEmail() {
         return email;
     }
@@ -58,26 +64,13 @@ public class UserEntity extends BaseEntity{
         this.email = email;
         return this;
     }
-
-    public boolean isEnabled() {
-        return enabled;
+    @ManyToMany(fetch=FetchType.EAGER)
+    public List<RoleEntity> getRoles() {
+        return roles;
     }
 
-    public UserEntity setEnabled(boolean enabled) {
-        this.enabled = enabled;
-        return this;
-    }
-    @OneToMany(
-            mappedBy = "user",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
-    )
-    public List<AuthorityEntity> getAuthorities() {
-        return authorities;
-    }
-
-    public UserEntity setAuthorities(List<AuthorityEntity> authorities) {
-        this.authorities = authorities;
+    public UserEntity setRoles(List<RoleEntity> roles) {
+        this.roles = roles;
         return this;
     }
 }

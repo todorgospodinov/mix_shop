@@ -1,4 +1,4 @@
-package softuni.mix_shop.model.service;
+package softuni.mix_shop.service;
 
 import softuni.mix_shop.model.entity.ProductEntity;
 

@@ -1,4 +1,4 @@
-package softuni.mix_shop.model.service;
+package softuni.mix_shop.service;
 
 
 import org.apache.velocity.exception.ResourceNotFoundException;

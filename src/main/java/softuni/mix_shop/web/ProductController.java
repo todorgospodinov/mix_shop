@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import softuni.mix_shop.model.entity.ProductEntity;
-import softuni.mix_shop.model.service.ProductService;
+import softuni.mix_shop.service.ProductService;
 
 @RestController
 @RequestMapping("/api/products")
